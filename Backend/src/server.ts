@@ -1,10 +1,10 @@
 import express, { Application } from 'express';
 import dotenve from 'dotenv'
+dotenve.config()
 import router from './modules/user/user.route';
 
 
 const app: Application = express()
-dotenve.config()
 
 app.use("/", router)
 
