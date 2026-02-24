@@ -1,31 +1,18 @@
 import { GoogleGenAI } from "@google/genai";
-
+import { COURSE_RESOURCES_PROMPT } from "../gemini.prompt";
 export class userService {
-  public ai = new GoogleGenAI({apiKey:process.env.GEMINI_AI!})
+  public ai = new GoogleGenAI({ apiKey: process.env.GEMINI_AI! });
 
-  public async main() {
+  public async main(courseName: string) {
     const response = await this.ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `give me five youtube channels link and five websites link about webdevelpement,
-"      {
-  studyArea: String,          // "Web Development"
-  websites: [
-    {
-      title: String,          // "MDN Web Docs"
-      url: String             // "https://developer.mozilla.org"
-    }
-  ],
-  youtubeChannels: [
-    {
-      title: String,          // "freeCodeCamp"
-      url: String             // "https://www.youtube.com/@freecodecamp"
-    }
-  ],
-  createdAt: Date
-
-  i need only this json data , no more texts , 
-}`,
+      contents: COURSE_RESOURCES_PROMPT(courseName),
     });
-    console.log( typeof response.text);
+    console.log(response.text);
+    if (!response.text) {
+      throw new Error("Gemini returned empty response");
+    }
+    return JSON.parse(response.text);
+    // return response.text;
   }
 }
