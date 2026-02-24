@@ -2,25 +2,22 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import AreaOfStudy from "./pages/areaOfStudy";
-
+import Materials from "./pages/materials";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Home />,
   },
   {
     path: "/area-of-study",
-    element: <AreaOfStudy />
-  }
+    element: <AreaOfStudy />,
+  },
+  { path: "/materials/:courseName", element: <Materials /> },
 ]);
 
 function App() {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
-
 export default App;
-
