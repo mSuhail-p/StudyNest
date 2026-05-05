@@ -1,108 +1,88 @@
-// import { useNavigate } from 'react-router-dom'
-
-// const Home = () => {
-//   const navigate = useNavigate();
-//   return (
-//     <div>
-//       <button onClick={() => {
-//         navigate("/area-of-study")
-//       }}>
-//         Get in
-//       </button>
-//     </div >
-//   )
-// }
-
-// export default Home
-
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ArrowRight, Zap, ShieldCheck, Globe } from "lucide-react";
+import { ArrowRight, Search, BookOpen, Zap } from "lucide-react";
 
 const Home = () => {
-  // In your actual app, this uses the real useNavigate hook
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-indigo-500 selection:text-white flex flex-col items-center justify-center overflow-hidden relative">
-      {/* Background Decorative Glows */}
-      <div className="absolute top-0 -left-20 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-0 -right-20 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse delay-700"></div>
-
-      <main className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-indigo-400 text-xs font-bold tracking-widest uppercase mb-8 shadow-2xl">
-          <Sparkles size={14} />
-          <span>Next Gen Learning Platform</span>
+    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-indigo-500 selection:text-white">
+      {/* Navigation Bar */}
+      <nav className="w-full px-6 py-6 flex items-center justify-between max-w-7xl mx-auto">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+            <BookOpen size={18} className="text-white" />
+          </div>
+          <span className="text-xl font-bold tracking-tight">StudyNest</span>
         </div>
+      </nav>
 
-        {/* Hero Title */}
-        <h1 className="text-5xl  md:text-6xl font-extrabold tracking-tighter mb-6 bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent">
-          Master any subject with <br />
-          <span className="text-indigo-500">Curated Materials.</span>
-        </h1>
+      {/* Hero Section */}
+      <main className="max-w-7xl mx-auto px-6 pt-16 pb-24 md:pt-32">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-indigo-400 text-sm font-medium mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            Smart Learning Hub
+          </div>
 
-        {/* Description */}
-        <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-          The fastest way to find high-quality learning websites and videos
-          tailored to your area of study. No more searching, just learning.
-        </p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+            Master any topic with <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+              curated resources.
+            </span>
+          </h1>
 
-        {/* Primary Action */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed">
+            Stop searching and start learning. StudyNest organizes the best documentation, websites, and video tutorials for exactly what you want to study.
+          </p>
+
           <button
             onClick={() => navigate("/area-of-study")}
-            className="group relative px-8 py-4 bg-white text-slate-950 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            className="group flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-950 hover:bg-indigo-50 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]"
           >
-            <div className="absolute inset-0 bg-indigo-600 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
-            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
-              Get Started for Free
-              <ArrowRight
-                size={20}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </span>
+            Get Started
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24">
-          <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-left hover:border-indigo-500/50 transition-colors group">
-            <Zap
-              className="text-indigo-500 mb-4 group-hover:scale-110 transition-transform"
-              size={24}
-            />
-            <h3 className="font-bold mb-2">Instant Search</h3>
-            <p className="text-slate-500 text-sm">
-              Find resources for any topic in under 2 seconds.
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-32">
+          {/* Feature 1 */}
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-6">
+              <Search className="text-indigo-400" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Topic Based</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Enter any subject, tool, or language. We find the most relevant materials tailored to that exact topic.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-left hover:border-indigo-500/50 transition-colors group">
-            <Globe
-              className="text-indigo-500 mb-4 group-hover:scale-110 transition-transform"
-              size={24}
-            />
-            <h3 className="font-bold mb-2">Web & Video</h3>
-            <p className="text-slate-500 text-sm">
-              The best of documentation and video tutorials in one place.
+          {/* Feature 2 */}
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6">
+              <BookOpen className="text-cyan-400" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Web & Docs</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Access official documentation, high-quality articles, and interactive platforms instantly.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-left hover:border-indigo-500/50 transition-colors group">
-            <ShieldCheck
-              className="text-indigo-500 mb-4 group-hover:scale-110 transition-transform"
-              size={24}
-            />
-            <h3 className="font-bold mb-2">Verified Content</h3>
-            <p className="text-slate-500 text-sm">
-              Curated lists ensuring you only get the highest quality info.
+          {/* Feature 3 */}
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6">
+              <Zap className="text-purple-400" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mb-3">Video Courses</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Prefer watching? We bring you the top-rated YouTube tutorials and crash courses directly.
             </p>
           </div>
         </div>
       </main>
-
-      {/* Sharp Grid Pattern Overlay */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
     </div>
   );
 };
