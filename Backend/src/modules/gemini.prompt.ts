@@ -1,14 +1,29 @@
-export const COURSE_RESOURCES_PROMPT = (coursname: string) => {
+export const COURSE_RESOURCES_PROMPT = (coursename: string) => {
   const prompt = `
-Give me five youtube videos links and five websites links about ${coursname}.
-Follow this schema:
+Give me five YouTube video links and five website links about "${coursename}".
+
+Return ONLY this JSON:
+
 {
   "studyArea": "string",
-  "websites": [{ "title": "string", "url": "string" }],
-  "youtubeVideos": [{ "title": "string", "url": "string" }],
+  "websites": [
+    {
+      "title": "string",
+      "url": "string"
+    }
+  ],
+  "youtubeVideos": [
+    {
+      "title": "string",
+      "url": "string"
+    }
+  ],
   "createdAt": "string"
 }
-  You are a specialized data extractor. You only output valid JSON based on the provided schema. Do not include markdown code blocks like ${"```json"}
+
+Return only valid JSON.
+Do not use markdown.
+Do not explain anything.
 `;
   return prompt;
 };
