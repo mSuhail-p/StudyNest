@@ -15,22 +15,23 @@ export class userService {
     if (!validation.text) {
       throw new Error("validation failed");
     }
-
+    console.log(validation.text,"it is validation text")
     const validationResult = JSON.parse(validation.text);
+    console.log(validationResult,"it is validation result")
     if (!validationResult.valid) {
-      throw new Error("validationResult.reason");
+      throw new Error(validationResult.reason);
     }
 
     // Generate resources
-    const response = await this.ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: COURSE_RESOURCES_PROMPT(courseName),
-    });
-    console.log(response.text);
-    if (!response.text) {
-      throw new Error("Gemini returned empty response");
-    }
-    return JSON.parse(response.text);
+    // const response = await this.ai.models.generateContent({
+    //   model: "gemini-3-flash-preview",
+    //   contents: COURSE_RESOURCES_PROMPT(courseName),
+    // });
+    // console.log(response.text);
+    // if (!response.text) {
+    //   throw new Error("Gemini returned empty response");
+    // }
+    // return JSON.parse(response.text);
     // return response.text;
   }
 }

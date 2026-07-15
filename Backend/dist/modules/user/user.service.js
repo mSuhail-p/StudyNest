@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userService = void 0;
 const genai_1 = require("@google/genai");
-const gemini_prompt_1 = require("../gemini.prompt");
 const text_validation_1 = require("../text.validation");
 class userService {
     constructor() {
@@ -27,20 +26,22 @@ class userService {
             if (!validation.text) {
                 throw new Error("validation failed");
             }
+            console.log(validation.text, "it is validation text");
             const validationResult = JSON.parse(validation.text);
+            console.log(validationResult, "it is validation result");
             if (!validationResult.valid) {
-                throw new Error("validationResult.reason");
+                throw new Error(validationResult.reason);
             }
             // Generate resources
-            const response = yield this.ai.models.generateContent({
-                model: "gemini-3-flash-preview",
-                contents: (0, gemini_prompt_1.COURSE_RESOURCES_PROMPT)(courseName),
-            });
-            console.log(response.text);
-            if (!response.text) {
-                throw new Error("Gemini returned empty response");
-            }
-            return JSON.parse(response.text);
+            // const response = await this.ai.models.generateContent({
+            //   model: "gemini-3-flash-preview",
+            //   contents: COURSE_RESOURCES_PROMPT(courseName),
+            // });
+            // console.log(response.text);
+            // if (!response.text) {
+            //   throw new Error("Gemini returned empty response");
+            // }
+            // return JSON.parse(response.text);
             // return response.text;
         });
     }
