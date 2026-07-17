@@ -29,7 +29,7 @@ const Materials = () => {
       try {
         setLoader(true);
         const response = await axios.get(
-          `http://localhost:3000/areaOfStudies`,
+          `${import.meta.env.VITE_API_URL}/areaOfStudies`,
           {
             params: {
               courseName: courseName || "React",
