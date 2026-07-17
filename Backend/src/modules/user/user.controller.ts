@@ -7,6 +7,7 @@ export class userController {
     try {
       const courseName: string = String(req.query.courseName);
       const geminiRes = await UserService.main(courseName);
+      console.log(geminiRes, "it is res from gemini");
 
       res.status(200).json(geminiRes);
     } catch (err) {

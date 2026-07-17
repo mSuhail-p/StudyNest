@@ -5,6 +5,7 @@ export class userService {
   public ai = new GoogleGenAI({ apiKey: process.env.GEMINI_AI! });
 
   public async main(courseName: string) {
+    console.log("here is reached");
     const response = await this.ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: COURSE_SEARCH_PROMPT(courseName),

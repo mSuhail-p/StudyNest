@@ -16,14 +16,15 @@ class userController {
     areaOfstudies(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("here is in area of studies ");
                 const courseName = String(req.query.courseName);
                 const geminiRes = yield UserService.main(courseName);
-                console.log(geminiRes, "fake data");
+                console.log(geminiRes, "it is res from gemini");
                 res.status(200).json(geminiRes);
             }
             catch (err) {
                 console.log(err, ":err on controller file ");
+                const message = err instanceof Error ? err.message : "Something went wrong";
+                res.status(400).json({ status: "fail", message });
             }
         });
     }
