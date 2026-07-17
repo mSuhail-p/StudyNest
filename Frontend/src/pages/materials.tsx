@@ -8,7 +8,7 @@ import {
   ArrowLeft,
   LayoutGrid,
   PlayCircle,
-  Link2
+  Link2,
 } from "lucide-react";
 
 interface Data {
@@ -34,11 +34,12 @@ const Materials = () => {
             params: {
               courseName: courseName || "React",
             },
-          }
+          },
         );
         setData(response.data);
-      } catch (err) {
-        console.error("Failed to fetch materials:", err);
+        console.log(response.data, "responce from meterials.tsx");
+      } catch (err: any) {
+        console.error(err, ":400 Error messages  from backend  ");
       } finally {
         setLoader(false);
       }
@@ -68,11 +69,13 @@ const Materials = () => {
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6 text-slate-50">
         <div className="w-12 h-12 border-4 border-slate-800 border-t-indigo-500 rounded-full animate-spin mb-6"></div>
         <h2 className="text-2xl font-bold mb-2">Curating Resources...</h2>
-        <p className="text-slate-400">Finding the best materials for {courseName}</p>
+        <p className="text-slate-400">
+          Finding the best materials for {courseName}
+        </p>
       </div>
     );
   }
-
+  // handling the non courses texts
   if (!data || (!data.websites?.length && !data.youtubeVideos?.length)) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 text-slate-50">
@@ -82,7 +85,8 @@ const Materials = () => {
           </div>
           <h2 className="text-2xl font-bold mb-3">No Materials Found</h2>
           <p className="text-slate-400 mb-8">
-            We couldn't find curated resources for "{courseName}". Try searching for another topic.
+            We couldn't find curated resources for "{courseName}". Try searching
+            for another topic.
           </p>
           <button
             onClick={() => navigate(-1)}
@@ -118,7 +122,6 @@ const Materials = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 pt-10">
-        
         {/* Websites Section */}
         {data.websites && data.websites.length > 0 && (
           <section className="mb-16">
@@ -140,7 +143,10 @@ const Materials = () => {
                     <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-cyan-400 group-hover:bg-cyan-400/10 transition-colors">
                       <Link2 size={20} />
                     </div>
-                    <ExternalLink size={16} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink
+                      size={16}
+                      className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                    />
                   </div>
                   <h3 className="font-bold text-lg mb-2 text-white group-hover:text-cyan-400 transition-colors line-clamp-2">
                     {site.title}
@@ -186,14 +192,20 @@ const Materials = () => {
                       <div className="aspect-video w-full bg-slate-800 flex flex-col items-center justify-center p-6 text-center">
                         <PlayCircle className="w-12 h-12 text-slate-500 mb-3" />
                         <h3 className="font-bold mb-1">{video.title}</h3>
-                        <p className="text-sm text-slate-400">Direct channel link</p>
+                        <p className="text-sm text-slate-400">
+                          Direct channel link
+                        </p>
                       </div>
                     )}
 
                     <div className="p-6 flex items-start justify-between gap-4 bg-slate-900 flex-grow">
                       <div>
-                        <h3 className="font-bold text-lg mb-1 line-clamp-2">{video.title}</h3>
-                        <p className="text-slate-400 text-sm">YouTube Resource</p>
+                        <h3 className="font-bold text-lg mb-1 line-clamp-2">
+                          {video.title}
+                        </h3>
+                        <p className="text-slate-400 text-sm">
+                          YouTube Resource
+                        </p>
                       </div>
                       <a
                         href={video.url}

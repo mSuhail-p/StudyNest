@@ -19,6 +19,7 @@ class userController {
                 console.log("here is in area of studies ");
                 const courseName = String(req.query.courseName);
                 const geminiRes = yield UserService.main(courseName);
+                console.log(geminiRes, "fake data");
                 res.status(200).json(geminiRes);
             }
             catch (err) {
