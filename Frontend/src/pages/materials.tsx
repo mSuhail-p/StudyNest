@@ -36,10 +36,13 @@ const Materials = () => {
             },
           },
         );
-        setData(response.data);
-        console.log(response.data, "responce from meterials.tsx");
+        setData(response.data.resources);
+        console.log(response.data.resources, "responce from meterials.tsx");
       } catch (err: any) {
-        console.error(err, ":400 Error messages  from backend  ");
+        console.error(
+          err.responce?.message,
+          ":400 Error messages  from backend  ",
+        );
       } finally {
         setLoader(false);
       }
